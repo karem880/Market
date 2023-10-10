@@ -21,7 +21,7 @@ const CustomSlider = () => {
       <Slider {...settings} className="mt-12">
         <div className="relative rounded-xl overflow-hidden">
           <img
-            src="/public/assets/grid1.jpg"
+            src="./assets/grid1.jpg"
             alt="Image 1"
             className="w-full h-[500px] md:h-[800px] object-cover rounded-lg shadow-lg transform scale-105 hover:scale-100 transition-transform duration-300"
           />
@@ -32,7 +32,7 @@ const CustomSlider = () => {
         </div>
         <div className="relative rounded-xl overflow-hidden">
           <img
-            src="/public/assets/meat.jpg"
+            src="./assets/meat.jpg"
             alt="Image 2"
             className="w-full h-[500px] md:h-[800px] object-cover rounded-lg shadow-lg transform scale-105 hover:scale-100 transition-transform duration-300"
           />
@@ -43,7 +43,7 @@ const CustomSlider = () => {
         </div>
         <div className="relative rounded-xl overflow-hidden">
           <img
-            src="/public/assets/dairy.jpg"
+            src="./assets/dairy.jpg"
             alt="Image 3"
             className="w-full h-[500px] md:h-[800px] object-cover rounded-lg shadow-lg transform scale-105 hover:scale-100 transition-transform duration-300"
           />
@@ -54,7 +54,7 @@ const CustomSlider = () => {
         </div>
         <div className="relative rounded-xl overflow-hidden">
           <img
-            src="/public/assets/fruits.jpg"
+            src="./assets/fruits.jpg"
             alt="Image 4"
             className="w-full h-[500px] md:h-[800px] object-cover rounded-lg shadow-lg transform scale-105 hover:scale-100 transition-transform duration-300"
           />
@@ -65,7 +65,7 @@ const CustomSlider = () => {
         </div>
         <div className="relative rounded-xl overflow-hidden">
           <img
-            src="/public/assets/drinks.webp"
+            src="./assets/drinks.webp"
             alt="Image 5"
             className="w-full h-[500px] md:h-[800px] object-cover rounded-lg shadow-lg transform scale-105 hover:scale-100 transition-transform duration-300"
           />

@@ -21,11 +21,10 @@ function NavBar() {
   </div>
   <div>
     <ul className='flex items-center justify-center gap-10'>
-      <li>home</li>
-      <li>alll</li>
-      <li>category</li>
-      <li>contact</li>
-      <li>aboutdev</li>
+      <li className='text-green-500 font-extrabold'>home</li>
+      <li className='text-green-500 font-extrabold'>SHOP</li>
+      <li className='text-green-500 font-extrabold'>contact</li>
+      <li className='text-green-500 font-extrabold'>aboutdev</li>
     </ul>
   </div>
   <div>
@@ -80,11 +79,10 @@ function NavBar() {
  
   <div>
     <ul className=''>
-      <li>home</li>
-      <li>alll</li>
-      <li>category</li>
-      <li>contact</li>
-      <li>aboutdev</li>
+      <li className='text-white mt-5 w-full text-center hover:scale-110 duration-1000 flex items-center justify-center font-extrabold'>home</li>
+      <li className='text-white mt-5 w-full text-center hover:scale-110 duration-1000 flex items-center justify-center font-extrabold'>SHOP</li>
+      <li className='text-white mt-5 w-full text-center hover:scale-110 duration-1000 flex items-center justify-center font-extrabold'>contact</li>
+      <li className='text-white mt-5 w-full text-center hover:scale-110 duration-1000 flex items-center justify-center font-extrabold'>aboutdev</li>
     </ul>
   </div>
      
