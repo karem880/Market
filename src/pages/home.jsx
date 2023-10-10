@@ -173,13 +173,13 @@ function Home() {
     <div className='flex items-center justify-center h-full flex-col md:flex-row w-full md:w-[50%] mt-10'>
         <div className='flex h-[70%] flex-col md:flex-row overflow-hidden gap-3 rounded-2xl'>
             <div className='w-full md:w-[50%] h-full flex flex-col gap-3'>
-                <img src="/public/assets/vegtablesheader.webp" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
-                <img src="/public/assets/grid1.jpg" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
+                <img src="./assets/vegtablesheader.webp" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
+                <img src="./assets/grid1.jpg" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
             </div>
 
             <div className='w-full md:w-[50%] h-full flex flex-col gap-3'>
-                <img src="/public/assets/grid3.webp" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
-                <img src="/public/assets/grid4.webp" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
+                <img src="./assets/grid3.webp" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
+                <img src="./assets/grid4.webp" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
             </div>
         </div>
     </div>
@@ -190,7 +190,7 @@ function Home() {
 
 <section className='relative flex flex-col md:flex-row gap-10 w-full h-[80vh] mt-44'>
   <div className='w-full md:w-[70%] h-[100%]'>
-    <div className='h-full bg-cover relative border-dashed border border-green-500 flex-col rounded-2xl bg-current flex items-center  justify-center py-5 text-2xl font-extrabold text-green-600' style={{ backgroundImage: 'url("/public/assets/Home.png")' }}>
+    <div className='h-full bg-cover relative border-dashed border border-green-500 flex-col rounded-2xl bg-current flex items-center  justify-center py-5 text-2xl font-extrabold text-green-600' style={{ backgroundImage: 'url("./assets/Home.png")' }}>
       {/* Content for the first div */}
       <p>Discover the Hidden Treasures</p>
       <p className="text-xl font-semibold mt-4">Explore our exquisite collection of fresh and premium products.</p>
@@ -202,7 +202,7 @@ function Home() {
   <div className='w-full md:w-[30%] flex flex-col gap-5 h-full '>
    
     
-    <div className='h-[50%] bg-cover relative text-center  border-dashed border border-green-500 flex-col rounded-2xl bg-current flex items-center  justify-center py-5 text-2xl font-extrabold text-green-600' style={{ backgroundImage: 'url("/public/assets/onion.png")' }}>
+    <div className='h-[50%] bg-cover relative text-center  border-dashed border border-green-500 flex-col rounded-2xl bg-current flex items-center  justify-center py-5 text-2xl font-extrabold text-green-600' style={{ backgroundImage: 'url("./assets/onion.png")' }}>
       {/* Content for the first div */}
       <p>Discover the Hidden Treasures</p>
       <p className="text-xl font-semibold mt-4">Explore our exquisite collection of fresh and premium products.</p>
@@ -212,7 +212,7 @@ function Home() {
 
 
 
-    <div className='h-[50%] bg-cover relative border-dashed border text-center  border-green-500 flex-col rounded-2xl bg-current flex items-center  justify-center py-5 text-2xl font-extrabold text-green-600' style={{ backgroundImage: 'url("/public/assets/felfel.png")' }}>
+    <div className='h-[50%] bg-cover relative border-dashed border text-center  border-green-500 flex-col rounded-2xl bg-current flex items-center  justify-center py-5 text-2xl font-extrabold text-green-600' style={{ backgroundImage: 'url("./assets/felfel.png")' }}>
       {/* Content for the first div */}
       <p>Discover the Hidden Treasures</p>
       <p className="text-xl font-semibold mt-4">Explore our exquisite collection of fresh and premium products.</p>
