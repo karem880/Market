@@ -1,12 +1,26 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { FaBook, FaStar,FaQuestion, FaBars,FaCarAlt,FaUser,FaHeart } from 'react-icons/fa'; // Example using Font Awesome icons
+import { FaBook, FaStar,FaQuestion, FaBars,FaCarAlt,FaUser,FaHeart, FaVolumeUp, FaVolumeMute } from 'react-icons/fa'; // Example using Font Awesome icons
 import { MdShoppingCart } from 'react-icons/md';
 function NavBar() {
     const [showMenu, setShowMenu] = useState(false);
     const toggleMenu = () => {
         setShowMenu(!showMenu);
       };
+      const [voice, setVoice] = useState(false);
+    
+      const toggleVoice = () => {
+        setVoice(!voice);
+      }
+    
+      useEffect(() => {
+        const audioElement = document.getElementById('audioElement');
+        if (voice==true) {
+          audioElement.play();
+        } else {
+          audioElement.pause();
+        }
+      }, [voice]);
 
 
    
@@ -37,6 +51,12 @@ function NavBar() {
       <li className='relative'><MdShoppingCart size={24}/>
       <span className='flex absolute top-[-18px] right-[-10px] w-[20px] h-[20px] rounded-full bg-green-400 text-white items-center justify-center'>0</span>
 </li>
+
+                    {voice ? (
+                      <p onClick={toggleVoice}><FaVolumeUp  className='hover:scale-110 transition-transform duration-500 md:text-3xl text-xl ' /></p>
+                    ) : (
+                      <p onClick={toggleVoice}><FaVolumeMute className='hover:scale-110 transition-transform duration-500 md:text-3xl text-xl '  /></p>
+                    )}
     </ul>
   </div>
 
@@ -61,12 +81,17 @@ function NavBar() {
     <ul className='flex items-center justify-center gap-10'>
     <li ><FaUser size={24}/>
       </li>
-      <li className='relative'><FaHeart size={24} />
+      <li className='relative'><FaHeart className='hover:scale-110 transition-transform duration-500 md:text-3xl text-3xl ' size={24} />
       <span className='flex absolute top-[-18px] right-[-10px] w-[20px] h-[20px] rounded-full bg-green-400 text-white items-center justify-center'>0</span>
       </li>
-      <li className='relative'><MdShoppingCart size={24}/>
+      <li className='relative'><MdShoppingCart  className='hover:scale-110 transition-transform duration-500 md:text-3xl text-3xl ' size={24}/>
       <span className='flex absolute top-[-18px] right-[-10px] w-[20px] h-[20px] rounded-full bg-green-400 text-white items-center justify-center'>0</span>
 </li>
+{voice ? (
+                      <p onClick={toggleVoice}><FaVolumeUp  className='hover:scale-110 transition-transform duration-500 md:text-3xl text-3xl ' /></p>
+                    ) : (
+                      <p onClick={toggleVoice}><FaVolumeMute className='hover:scale-110 transition-transform duration-500 md:text-3xl text-3xl '  /></p>
+                    )}
     </ul>
   </div>
       <p className='cursor-pointer ' onClick={toggleMenu}>
@@ -92,6 +117,7 @@ function NavBar() {
      
     </header>
 </nav>
+<audio id="audioElement" src="/public/quran.mpeg" className='hidden w-0 h-0 opacity-0 ' autoPlay ></audio>
 
       
         </>

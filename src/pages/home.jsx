@@ -15,7 +15,6 @@ function Home() {
 
   return (
     <>
-      <NavBar />
 
 
 
@@ -108,7 +107,7 @@ function Home() {
     </div>
     <h2 className='text-4xl font-extrabold mb-6'>Discover Something Extraordinary</h2>
     <p className='text-2xl mb-10'>Unleash your imagination and embark on a journey of flavor and delight with our unique selection of products.</p>
-    <Link to='/' className='bg-gradient-to-r from-purple-500 to-red-300 hover:bg-yellow-600 text-white text-lg font-semibold px-8 py-4 rounded-full transition duration-300 ease-in-out'>Explore Now</Link>
+    <Link to='/shop' className='bg-gradient-to-r from-green-500 to-green-300 hover:bg-green-600 text-white text-lg font-semibold px-8 py-4 rounded-full transition duration-300 ease-in-out'>Explore Now</Link>
   </div>
 </section>
 

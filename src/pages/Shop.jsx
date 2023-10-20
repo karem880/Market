@@ -1,284 +1,136 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { FaBolt, FaEye, FaHeart, FaRegStar, FaShoppingCart, FaStar } from 'react-icons/fa';
+import NavBar from '../component/NavBar';
+import { NavLink } from 'react-router-dom';
 
 function Shop() {
+  const [data, setData] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/src/data/db.json");
+        setData(response.data);
+      } catch (error) {
+        console.error('حدث خطأ أثناء جلب البيانات:', error);
+      }
+    };
 
-    const [data,setdata] =useState([])
-    const [vegtables,setvegtables] =useState([])
-    const [fruit,setfruit] =useState([])
-    const [cheese,setcheese] =useState([])
-    const [dairy,setdairy] =useState([])
-    const [meat,setmeat] =useState([])
-    const [desserts,setdesserts] =useState([])
-    const [beveragesTea,setbeveragesTea] =useState([])
-  
-  
-  
-  
-  
-  
-  
-  
-    useEffect(() => {
-      const fetchdata = async () => {
-        try {
-          const response = await axios.get("/src/data/db.json");
-          console.log(response.data);
-          setdata(response.data);
-          setfruit(response.data.products.fruits);
-          setvegtables(response.data.products.vegetables);
-          setcheese(response.data.products.cheese);
-          setdairy(response.data.products.dairy);
-          setmeat(response.data.products.meat);
-          setdesserts(response.data.products.desserts)
-          setbeveragesTea(response.data.products.beverages.beveragesTea.productsBeverages)
-                 
-        } catch (error) {
-          console.error('حدث خطأ أثناء جلب البيانات:', error);
-        }
-      };
-  
-      fetchdata(); 
-    }, []);
-  
-  
-  
-    const [vegstates,setvegstates]=useState(true)
-    const [fruitsstates,setfruitsstates] =useState(false)
-    const [cheesestates,setcheesestates] =useState(false)
-    const [daiarystates,setdaiarystates] =useState(false)
-    const [meatstates,setmeatstates] =useState(false)
-    const [dessertsstates,setdessertsstates] =useState(false)
-    const [beveragesTeastate,setbeveragesTeastate] =useState(false)
-    const [dataStates,setdataStates] =useState(true)
+    fetchData();
+  }, []);
 
-  
-  
-  
-  
-  
-    const vegtoggle=()=>{
-      setvegstates(!vegstates)
-      setfruitsstates(false)
-      setcheesestates(false)
-      setdaiarystates(false)
-      setmeatstates(false)
-      setdessertsstates(false)
-      setbeveragesTeastate(false)
-  
-  
-    }
-    const fruitstoggle=()=>{
-      setfruitsstates(!fruitsstates)
-      setvegstates(false)
-      setcheesestates(false)
-      setdaiarystates(false)
-      setmeatstates(false)
-      setdessertsstates(false)
-      setbeveragesTeastate(false)
-  
-  
-  
-    }
-    const cheesetoggle=()=>{
-      setcheesestates(!cheesestates)
-      setvegstates(false)
-      setfruitsstates(false)
-      setdaiarystates(false)
-      setmeatstates(false)
-      setdessertsstates(false)
-      setbeveragesTeastate(false)
-  
-  
-  
-  
-    }
-    const daiarytoggle=()=>{
-      setdaiarystates(!daiarystates)
-      setvegstates(false)
-      setfruitsstates(false)
-      setcheesestates(false)
-      setmeatstates(false)
-      setdessertsstates(false)
-      setbeveragesTeastate(false)
+  const handleCategoryChange = (newCategory) => {
+    setSelectedCategory(newCategory);
+  };
 
-  
-  
-  
-    }
-    const meattoggle=()=>{
-      setmeatstates(!meatstates)
-      setvegstates(false)
-      setfruitsstates(false)
-      setdaiarystates(false)
-      setcheesestates(false)
-      setdessertsstates(false)
-      setbeveragesTeastate(false)
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
-  
-  
-    }
-  
-  
-    const dessertstoggle=()=>{
-      setdessertsstates(!dessertsstates)
-      setvegstates(false)
-      setfruitsstates(false)
-      setdaiarystates(false)
-      setcheesestates(false)
-      setmeatstates(false)
-      setbeveragesTeastate(false)
+  if (!data.products) {
+    return <div>Loading...</div>;
+  }
 
-  
-  
-  
-    }
-  
-  
-    const teatoggle=()=>{
-      setbeveragesTeastate(!beveragesTeastate)
-      setvegstates(false)
-      setfruitsstates(false)
-      setdaiarystates(false)
-      setcheesestates(false)
-      setmeatstates(false)
-      setdessertsstates(false)
+  const categories = Object.keys(data.products);
+  const displayedProducts =
+    selectedCategory === 'all'
+      ? [].concat(...Object.values(data.products))
+      : data.products[selectedCategory];
 
-  
-  
-  
-    }
+  const filteredProducts = displayedProducts.filter((product) =>
+    product && product.name && product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-    
+  return (
+    <>
+    <div className="container mt-24 mx-auto p-4">
+      <div className="mb-4 flex flex-col md:flex-row items-center justify-around w-full">
+        <div className='flex md:flex-row flex-col w-full md:w-[25%] items-center'>
+        <label htmlFor="category" className="block text-green-700 font-extrabold">Select Category:</label>
+        <select
+          id="category"
+          value={selectedCategory}
+          onChange={(e) => handleCategoryChange(e.target.value)}
+          className="bg-white border border-green-500 rounded px-4 py-2 w-full mb-5 md:mb-0 md:w-[90%]"
+        >
+          <option value="all">All</option>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+        </div>
+        <div className="  w-full md:w-[70%] border-[1.5px] border-green-500 active:border-none  rounded-md outline-none ">
+        <input
+          type="text"
+          placeholder="Search products"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="border rounded px-4 py-2 w-full"
+        />
+      </div>
+      </div>
 
-    return (
-        <>
-    
-<div className='w-full flex justify-center items-center gap-5  mt-52 flex-wrap '>
+      
 
-<button onClick={vegtoggle} className=' w-[150px]  rounded-xl bg-green-600 text-white flex items-center justify-center h-[60px] hover:scale-125 duration-1000 hover:bg-green-400'> vegtables</button>
-        <button onClick={fruitstoggle} className=' w-[150px]  rounded-xl bg-green-600 text-white flex items-center justify-center h-[60px] hover:scale-125 duration-1000 hover:bg-red-400'> fruits</button>
-        <button onClick={cheesetoggle} className=' w-[150px]  rounded-xl bg-green-600 text-white flex items-center justify-center h-[60px] hover:scale-125 duration-1000 hover:bg-blue-400'> cheese</button>
-        <button onClick={daiarytoggle} className=' w-[150px]  rounded-xl bg-green-600 text-white flex items-center justify-center h-[60px] hover:scale-125 duration-1000 hover:bg-blue-400'> daiary</button>
-        <button onClick={meattoggle} className=' w-[150px]  rounded-xl bg-green-600 text-white flex items-center justify-center h-[60px] hover:scale-125 duration-1000 hover:bg-blue-400'> meat</button>
-        <button onClick={dessertstoggle} className=' w-[150px]  rounded-xl bg-green-600 text-white flex items-center justify-center h-[60px] hover:scale-125 duration-1000 hover:bg-blue-400'> desserts</button>
-        <button onClick={teatoggle} className=' w-[150px]  rounded-xl bg-green-600 text-white flex items-center justify-center h-[60px] hover:scale-125 duration-1000 hover:bg-blue-400'> beveragesTea</button>
+      <div className="flex flex-col md:flex-row flex-wrap mt-24  gap-5 w-full">
+        {filteredProducts.map((product) => (
+         <div key={product.id} className="relative flex flex-col w-[90%] mx-auto md:w-[450px] rounded-2xl hover:scale-[1.05] duration-1000 z-10 overflow-hidden  shadow-2xl  shadow-gray-500 bg-white h-[500px] object-cover   ">
+         
+         <img
+           src={product.image_url} alt={product.name}
+           className="w-full h-[50%]"
+           
+         />
+         <h1
+           className="text-center text-lg font-extrabold w-full flex justify-center gap-3 mx-auto items-center mt-14 ml-0"
+           style={{ fontFamily: "monospace" }}
+         >
+          
+           <h1 className="text-start text-lg font-extrabold">
+           {product.name}
+           </h1>
+         </h1>
+         
 
+         <div className="flex justify-around items-center gap-3 mt-3 w-[99%] mx-auto lg:mt-10 ">
+           <div className="flex gap-1 items-center">
+             <FaStar className="text-orange-500 text-lg" />
+             <FaStar className="text-orange-500 text-lg" />
+             <FaStar className="text-orange-500 text-lg" />
+             <FaStar className="text-orange-500 text-lg" />
+             <FaRegStar className="text-gray-500 text-xl" />
+             <span className="text-gray-400 text-sm"> (the rate)</span>
+           </div>
+           <span className=" text-orange-500 font-extrabold">
+           Price: {product.price}E.G
+             
+           </span>
+         </div>
 
+         <div className="w-full flex justify-around items-center mt-10">
+ <NavLink to={`/products/${product.id}`}> <FaEye className='text-green-400 hover:text-orange-400' size={30} /></NavLink> 
+  <FaShoppingCart className='text-green-400 hover:text-orange-400'  size={30} /> 
+  <FaHeart className='text-green-400 hover:text-orange-400' size={30} /> 
 </div>
 
-  
 
 
 
-      {vegstates === true ? (
-            <div className='w-full flex items-center justify-center gap-10 text-green-400 flex-wrap mt-52 flex-col md:flex-row text-center'>
-            {vegtables.map((vegetable) => (
-              <div key={vegetable.id} className='w-[90%] md:w-[20%] flex flex-col items-center  shadow-lg h-[400px]
-              drop-shadow-2xl shadow-gray rounded-3xl  overflow-hidden  hover:to-green-600 hover:scale-105 transition-transform duration-300'>
-                <img src={vegetable.image_url} alt={vegetable.name} className='w-full h-[60%] object-cover rounded-md mb-2' />
-          
-                <h2 className='text-xl font-semibold'>{vegetable.name}</h2>
-                <p className='text-gray-300'>السعر: {vegetable.price}</p>
-                <img src={vegetable.image_url} alt={vegetable.name} className='w-8 h-8 mt-2 rounded-full' />
-              </div>
-            ))}
-          </div>
-      ):null}
+       </div>
+        ))}
+      </div>
+
+    
 
 
-
-{fruitsstates === true ? (
-   <div className='w-full flex items-center justify-center gap-10 text-green-400 flex-wrap mt-52  flex-col md:flex-row text-center'>
-   {fruit.map((fruit) => (
-     <div key={fruit.id} className='w-[90%] md:w-[20%] flex flex-col items-center  shadow-lg h-[400px] drop-shadow-2xl shadow-gray rounded-3xl  overflow-hidden hover:to-green-600 hover:scale-105 transition-transform duration-300 '>
-       <img src={fruit.image_url} alt={fruit.name} className='w-full h-[60%] object-cover rounded-md mb-2' />
- 
-       <h2 className='text-xl font-semibold'>{fruit.name}</h2>
-       <p className='text-gray-300'>السعر: {fruit.price}</p>
-       <img src={fruit.image_url} alt={fruit.name} className='w-8 h-8 mt-2 rounded-full' />
-     </div>
-   ))}
- </div>
-):null}
-
-
-
-{cheesestates === true ? (
-            <div className='w-full flex items-center justify-center gap-10 text-green-400 flex-wrap mt-52 flex-col md:flex-row text-center'>
-            {cheese.map((cheese) => (
-              <div key={cheese.id} className='w-[90%] md:w-[20%] flex flex-col items-center  shadow-lg h-[400px] drop-shadow-2xl shadow-gray rounded-3xl  overflow-hidden hover:to-green-600 hover:scale-105 transition-transform duration-300 '>
-                <img src={cheese.image_url} alt={cheese.name} className='w-full h-[60%] object-cover rounded-md mb-2' />
-          
-                <h2 className='text-xl font-semibold'>{cheese.name}</h2>
-                <p className='text-gray-300'>السعر: {cheese.price}</p>
-                <img src={cheese.image_url} alt={cheese.name} className='w-8 h-8 mt-2 rounded-full' />
-              </div>
-            ))}
-          </div>
-      ):null}
-
-
-{daiarystates === true ? (
-            <div className='w-full flex items-center justify-center gap-10 text-green-400 flex-wrap mt-52 flex-col md:flex-row text-center'>
-            {dairy.map((daiary) => (
-              <div key={daiary.id} className='w-[90%] md:w-[20%] flex flex-col items-center  shadow-lg h-[400px] drop-shadow-2xl shadow-gray rounded-3xl  overflow-hidden hover:to-green-600 hover:scale-105 transition-transform duration-300 '>
-                <img src={daiary.image_url} alt={daiary.name} className='w-full h-[60%] object-cover rounded-md mb-2' />
-          
-                <h2 className='text-xl font-semibold'>{daiary.name}</h2>
-                <p className='text-gray-300'>السعر: {daiary.price}</p>
-                <img src={daiary.image_url} alt={daiary.name} className='w-8 h-8 mt-2 rounded-full' />
-              </div>
-            ))}
-          </div>
-      ):null}
-
-
-{meatstates === true ? (
-            <div className='w-full flex items-center justify-center gap-10 text-green-400 flex-wrap mt-52 flex-col md:flex-row text-center'>
-            {meat.map((meat) => (
-              <div key={meat.id} className='w-[90%] md:w-[20%] flex flex-col items-center  shadow-lg h-[400px] drop-shadow-2xl shadow-gray rounded-3xl  overflow-hidden hover:to-green-600 hover:scale-105 transition-transform duration-300 '>
-                <img src={meat.image_url} alt={meat.name} className='w-full h-[60%] object-cover rounded-md mb-2' />
-          
-                <h2 className='text-xl font-semibold'>{meat.name}</h2>
-                <p className='text-gray-300'>السعر: {meat.price}</p>
-                <img src={meat.image_url} alt={meat.name} className='w-8 h-8 mt-2 rounded-full' />
-              </div>
-            ))}
-          </div>
-      ):null}
-
-{dessertsstates === true ? (
-            <div className='w-full flex items-center justify-center gap-10 text-green-400 flex-wrap mt-52 flex-col md:flex-row text-center'>
-            {desserts.map((dessert) => (
-              <div key={dessert.id} className='w-[90%] md:w-[20%] flex flex-col items-center  shadow-lg h-[400px] drop-shadow-2xl shadow-gray rounded-3xl  overflow-hidden hover:to-green-600 hover:scale-105 transition-transform duration-300 '>
-                <img src={dessert.image_url} alt={dessert.name} className='w-full h-[60%] object-cover rounded-md mb-2' />
-          
-                <h2 className='text-xl font-semibold'>{dessert.name}</h2>
-                <p className='text-gray-300'>السعر: {dessert.price}</p>
-                <img src={dessert.image_url} alt={dessert.name} className='w-8 h-8 mt-2 rounded-full' />
-              </div>
-            ))}
-          </div>
-      ):null}
-
-
-{beveragesTeastate === true ? (
-            <div className='w-full flex items-center justify-center gap-10 text-green-400 flex-wrap mt-52 flex-col md:flex-row text-center'>
-            {beveragesTea.map((tea) => (
-              <div key={tea.id} className='w-[90%] md:w-[20%] flex flex-col items-center  shadow-lg h-[400px] drop-shadow-2xl shadow-gray rounded-3xl  overflow-hidden hover:to-green-600 hover:scale-105 transition-transform duration-300 '>
-                <img src={tea.image_url} alt={tea.name} className='w-full h-[60%] object-cover rounded-md mb-2' />
-          
-                <h2 className='text-xl font-semibold'>{tea.name}</h2>
-                <p className='text-gray-300'>السعر: {tea.price}</p>
-                <img src={tea.image_url} alt={tea.name} className='w-8 h-8 mt-2 rounded-full' />
-              </div>
-            ))}
-          </div>
-      ):null}
-        </>
-    );
+    </div>
+    </>
+  );
 }
 
 export default Shop;
