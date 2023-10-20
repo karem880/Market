@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaBook, FaStar,FaQuestion, FaBars,FaCarAlt,FaUser,FaHeart, FaVolumeUp, FaVolumeMute } from 'react-icons/fa'; // Example using Font Awesome icons
 import { MdShoppingCart } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 function NavBar() {
     const [showMenu, setShowMenu] = useState(false);
     const toggleMenu = () => {
@@ -34,12 +35,16 @@ function NavBar() {
     <img src="/public/assets/loogo.webp" width={100} className='object-cover' alt="" />
   </div>
   <div>
-    <ul className='flex items-center justify-center gap-10'>
-      <li className='text-green-500 font-extrabold'>home</li>
-      <li className='text-green-500 font-extrabold'>SHOP</li>
-      <li className='text-green-500 font-extrabold'>contact</li>
-      <li className='text-green-500 font-extrabold'>aboutdev</li>
-    </ul>
+
+    <nav className="flex items-center justify-center gap-10">
+      <Link to="/" className="text-green-500 font-extrabold">Home</Link>
+      <Link to="/shop" className="text-green-500 font-extrabold">SHOP</Link>
+      <Link to="/contact" className="text-green-500 font-extrabold">Contact</Link>
+      <Link to="/aboutdev" className="text-green-500 font-extrabold">AboutDev</Link>
+    </nav>
+
+
+
   </div>
   <div>
     <ul className='flex items-center justify-center gap-10'>

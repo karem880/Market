@@ -31,7 +31,8 @@ function Shop() {
   };
 
   if (!data.products) {
-    return <div>Loading...</div>;
+    return <div className='w-full bg-slate-800 h-[100vh] flex items-center flex-col justify-center'> 
+<span className="loader"></span>    </div>;
   }
 
   const categories = Object.keys(data.products);

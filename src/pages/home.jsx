@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import NavBar from '../component/NavBar';
 import axios from 'axios';
 import { MdShoppingCart } from 'react-icons/md';
@@ -24,10 +24,10 @@ function Home() {
         <h2 className='text-green-600 mt-2 text-lg font-extrabold text-center'>Explore our sections by clicking the button below.</h2>
 
         <p className='text-gray-700 text-base mt-4'>Discover the freshest produce and more!</p>
-        <button className='w-full md:w-[70%] text-xl font-bold p-3 bg-green-600 text-white flex items-center justify-center h-[50px] rounded-lg mt-6 hover:bg-green-700 transition duration-300 ease-in-out'>Explore Market</button>
+        <NavLink to={'/shop'} className='w-full md:w-[70%] text-xl font-bold p-3 bg-green-600 text-white flex items-center justify-center h-[50px] rounded-lg mt-6 hover:bg-green-700 transition duration-300 ease-in-out'>Explore Market</NavLink>
     </div>
 
-    <div className='flex items-center justify-center h-full flex-col md:flex-row w-full md:w-[50%] mt-10'>
+    <NavLink to={'/shop'} className='flex items-center justify-center h-full flex-col md:flex-row w-full md:w-[50%] mt-10'>
         <div className='flex h-[70%] flex-col md:flex-row overflow-hidden gap-3 rounded-2xl'>
             <div className='w-full md:w-[50%] h-full flex flex-col gap-3'>
                 <img src="./assets/vegtablesheader.webp" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
@@ -39,7 +39,7 @@ function Home() {
                 <img src="./assets/grid4.webp" className='h-[300px] rounded-lg object-cover w-full md:w-[300px]' alt="" />
             </div>
         </div>
-    </div>
+    </NavLink>
 </section>
 <ComplexTouchGallery />
 
@@ -51,7 +51,7 @@ function Home() {
       {/* Content for the first div */}
       <p>Discover the Hidden Treasures</p>
       <p className="text-xl font-semibold mt-4">Explore our exquisite collection of fresh and premium products.</p>
-      <button className='w-[70%] md:w-[50%] text-xl font-bold p-3 bg-green-600 text-white flex items-center justify-center h-[50px] rounded-lg mt-6 hover:bg-green-700 transition duration-300 ease-in-out'>Explore Market</button>
+      <NavLink to={'/shop'} className='w-[70%] md:w-[50%] text-xl font-bold p-3 bg-green-600 text-white flex items-center justify-center h-[50px] rounded-lg mt-6 hover:bg-green-700 transition duration-300 ease-in-out'>Explore Market</NavLink>
 
     </div>
   </div>

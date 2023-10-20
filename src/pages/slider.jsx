@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { NavLink } from 'react-router-dom';
 
 const CustomSlider = () => {
   const settings = {
@@ -16,7 +17,7 @@ const CustomSlider = () => {
   };
 
   return (
-    <div className="w-[90%] m-auto mt-32">
+    <NavLink to={'/shop'} className="w-[90%] m-auto mt-32">
       <h2 className="text-3xl mb-8 text-center text-green-600 font-extrabold">our sections</h2>
       <Slider {...settings} className="mt-12">
         <div className="relative rounded-xl overflow-hidden">
@@ -76,7 +77,7 @@ const CustomSlider = () => {
         </div>
         {/* Add more slides here */}
       </Slider>
-    </div>
+    </NavLink>
   );
 };
 
